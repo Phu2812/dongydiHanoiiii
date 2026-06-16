@@ -264,6 +264,7 @@ body {
   box-shadow: 0 15px 35px rgba(31, 23, 54, 0.1), inset 0 0 25px var(--card-glow);
   position: relative;
   overflow: hidden;
+  overflow: clip; /* Clips visually without creating scroll container, allows child scroll on iOS */
   display: flex;
   flex-direction: column;
   height: 540px; /* Fixed height on desktop to prevent layout resizing/jumping */
@@ -488,6 +489,9 @@ body {
 .story-content.scrollable {
   justify-content: flex-start;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
+  touch-action: pan-y; /* Allow vertical touch scroll to propagate */
+  overscroll-behavior: contain; /* Prevent scroll chaining to page */
   padding-right: 8px;
 }
 
@@ -770,6 +774,12 @@ body {
     font-size: 13.5px;
     line-height: 1.65;
     padding: 18px;
+  }
+  .story-content.scrollable {
+    /* Ensure enough room on small screens for content + decision buttons */
+    max-height: 100%;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
   .stamp-border {
     padding: 10px 15px;

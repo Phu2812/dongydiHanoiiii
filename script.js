@@ -203,6 +203,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   btnAccept.addEventListener('click', acceptConfession);
+
+  // Fix: on iOS, overflow:hidden on body/html blocks touch scroll inside child elements.
+  // We intercept touchmove on scrollable story containers and stop propagation so the
+  // inner element can scroll instead of the blocked body.
+  document.addEventListener('touchmove', (e) => {
+    const scrollable = e.target.closest('.story-content.scrollable');
+    if (scrollable) {
+      // Allow touch scroll inside this element; stop it from bubbling to body
+      e.stopPropagation();
+    }
+  }, { passive: true });
 });
 
 // Envelope Opening transition
