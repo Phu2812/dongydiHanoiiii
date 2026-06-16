@@ -266,8 +266,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 480px;
-  max-height: 85vh;
+  height: 540px; /* Fixed height on desktop to prevent layout resizing/jumping */
 }
 .card::before {
   content: '';
@@ -464,7 +463,7 @@ body {
   line-height: 1.8;
   color: var(--text-primary);
   text-align: left;
-  min-height: 160px;
+  flex-grow: 1; /* Take up all remaining space in the fixed height card */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -474,7 +473,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4), 0 4px 15px rgba(31, 23, 54, 0.03);
   position: relative;
-  overflow: hidden;
+  overflow-y: auto; /* Scroll instead of crop if text overflows */
+  scrollbar-width: thin;
 }
 .story-content::after {
   content: '✨';
@@ -488,7 +488,6 @@ body {
 .story-content.scrollable {
   justify-content: flex-start;
   overflow-y: auto;
-  max-height: 52vh;
   padding-right: 8px;
 }
 
@@ -757,8 +756,8 @@ body {
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .card {
-    padding: 22px;
-    min-height: 440px;
+    padding: 20px;
+    height: 480px; /* Secure fixed height to block dynamic resizing/jumping */
   }
   .romantic-title {
     font-size: 22px;
@@ -770,7 +769,6 @@ body {
   .story-content {
     font-size: 13.5px;
     line-height: 1.65;
-    min-height: 150px;
     padding: 18px;
   }
   .stamp-border {
