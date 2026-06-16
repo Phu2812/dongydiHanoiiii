@@ -369,21 +369,50 @@ function runawayReject() {
     btnReject.style.zIndex = '9999';
   }
   
-  const padding = 50;
+  const acceptRect = btnAccept.getBoundingClientRect();
+  const navRect = navControls.getBoundingClientRect();
+  const isNavVisible = !navControls.classList.contains('hidden');
+  
+  // Set safety padding margins (narrower on mobile for more jump room)
+  const isMobile = window.innerWidth <= 480;
+  const padding = isMobile ? 20 : 50;
+  
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   
   const maxLeft = screenWidth - rect.width - padding;
   const maxTop = screenHeight - rect.height - padding;
   
-  // Calculate new random coordinate anywhere in viewport
-  let newLeft = Math.random() * (maxLeft - padding) + padding;
-  let newTop = Math.random() * (maxTop - padding) + padding;
+  let newLeft = rect.left;
+  let newTop = rect.top;
+  let attempts = 0;
+  let hasOverlap = true;
   
-  // Ensure it doesn't overlap the old position too closely
-  if (Math.abs(newLeft - rect.left) < 120 && Math.abs(newTop - rect.top) < 120) {
-    newLeft = (newLeft + 200) % (maxLeft - padding) + padding;
-    newTop = (newTop + 200) % (maxTop - padding) + padding;
+  function checkOverlap(r1, r2) {
+    return !(r1.right < r2.left || 
+             r1.left > r2.right || 
+             r1.bottom < r2.top || 
+             r1.top > r2.bottom);
+  }
+  
+  while (hasOverlap && attempts < 40) {
+    newLeft = Math.random() * (maxLeft - padding) + padding;
+    newTop = Math.random() * (maxTop - padding) + padding;
+    
+    // Create candidate bounding rectangle with safety margin
+    const candidate = {
+      left: newLeft - 15,
+      right: newLeft + rect.width + 15,
+      top: newTop - 15,
+      bottom: newTop + rect.height + 15
+    };
+    
+    const overlapAccept = checkOverlap(candidate, acceptRect);
+    const overlapNav = isNavVisible ? checkOverlap(candidate, navRect) : false;
+    const overlapOld = (Math.abs(newLeft - rect.left) < 95 && Math.abs(newTop - rect.top) < 95);
+    
+    hasOverlap = overlapAccept || overlapNav || overlapOld;
+    attempts++;
   }
   
   btnReject.style.left = `${newLeft}px`;
