@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // We intercept touchmove on scrollable story containers and stop propagation so the
   // inner element can scroll instead of the blocked body.
   document.addEventListener('touchmove', (e) => {
-    const scrollable = e.target.closest('.story-content.scrollable');
+    const scrollable = e.target.closest('.story-content.scrollable, #slide-success');
     if (scrollable) {
       // Allow touch scroll inside this element; stop it from bubbling to body
       e.stopPropagation();

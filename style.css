@@ -727,6 +727,16 @@ body {
   display: block;
 }
 
+/* Success slide — make it scrollable so letter is reachable on small screens */
+#slide-success {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
 @keyframes heartbeat {
   0% { transform: scale(1); }
   25% { transform: scale(1.15); }
