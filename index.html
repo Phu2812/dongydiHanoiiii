@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gửi Hân... ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Hearts Background Container -->
+  <div id="hearts-container"></div>
+
+  <!-- Animated Glowing Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Main App Wrapper -->
+  <div id="app-wrapper">
+
+    <!-- Floating Music Player Widget -->
+    <div id="music-widget" class="hidden">
+      <div class="vinyl-wrapper">
+        <div class="vinyl" id="vinyl-disc">
+          <div class="vinyl-center">❤️</div>
+        </div>
+      </div>
+      <div class="music-info">
+        <span class="music-label">Đang phát:</span>
+        <span class="song-title" id="song-title">Đang tải nhạc...</span>
+      </div>
+      <button id="btn-toggle-play" class="control-btn" title="Phát/Tạm dừng">
+        <!-- Play SVG Icon -->
+        <svg id="play-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+        <!-- Pause SVG Icon (hidden initially) -->
+        <svg id="pause-icon" viewBox="0 0 24 24" width="24" height="24" class="hidden">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main Card Container -->
+    <div class="card" id="main-card">
+      <!-- Progress Bar (Visible after Start) -->
+      <div id="progress-bar-container" class="hidden">
+        <div id="progress-bar"></div>
+      </div>
+
+      <!-- Slide Container -->
+      <div id="slides-wrapper">
+
+        <!-- START SCREEN (Note trước khi bắt đầu) -->
+        <div class="slide active" id="slide-start" data-song-idx="0">
+          
+          <!-- State 1: Sealed Envelope -->
+          <div id="envelope-sealed" class="envelope-sealed">
+            <div class="envelope-icon">✉️</div>
+            <h1 class="romantic-title-large">Thư gửi Hân... ❤️</h1>
+            <button id="btn-open-envelope" class="btn btn-primary btn-pulse">
+              Mở thư tình
+              <svg class="icon" viewBox="0 0 24 24" width="18" height="18" style="margin-left: 8px;">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- State 2: Opened Envelope (initially hidden) -->
+          <div id="envelope-opened" class="envelope-opened hidden-state">
+            <div class="cover-art-container">
+              <img src="./assets/love_story_cover.png" alt="Love Story Cover" class="cover-art">
+            </div>
+            <h1 class="romantic-title">Gửi Hân... ❤️</h1>
+            <div class="note-box">
+              <p class="cringe-note">Này chắc xưng anh em cho tình cảm nhe :))))</p>
+              <p class="cringe-note text-secondary">À mà cái này cũng hơi cringe, Mong Hân đọc hếttt</p>
+            </div>
+            <button id="btn-start" class="btn btn-primary btn-pulse">
+              Bước vào câu chuyện
+              <svg class="icon" viewBox="0 0 24 24" width="18" height="18" style="margin-left: 8px;">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- MÀN 1: HẬU TAN VỠ - PHẦN 1 -->
+        <div class="slide" id="slide-man1-1" data-song-idx="1">
+          <span class="chapter-tag">Màn 1: Hậu tan vỡ</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Trước đây, anh cứ nghĩ mãi, nghĩ hoài về việc tại sao em lại chia tay anh. Ban đầu anh chẳng biết sao nữa. Nhưng mà, có một lúc anh ngồi lại, anh bắt đầu hiểu được rằng bản thân mình sai ở đâu. Lúc đó anh quá vô tâm, quá ỷ lại vào cái tình yêu “vĩnh cửu” mà cứ thong dong mãi. Có lẽ lúc đó anh mất em là đúng.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 1: HẬU TAN VỠ - PHẦN 2 -->
+        <div class="slide" id="slide-man1-2" data-song-idx="1">
+          <span class="chapter-tag">Màn 1: Hậu tan vỡ</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Việc mất đi em để lại khoảng trống quá lớn trong anh. Như kiểu yêu quá nhiều một người thì khi họ rời đi bản thân mình cũng đánh mất một phần của chính mình. Có nhiều ngày, anh mở điện thoại lên, chẳng có ai đợi mình nhắn, cũng chẳng có ai nhắn mình. Anh dần hiểu được cảm giác của em lúc đó.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 1: HẬU TAN VỠ - PHẦN 3 -->
+        <div class="slide" id="slide-man1-3" data-song-idx="1">
+          <span class="chapter-tag">Màn 1: Hậu tan vỡ</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Sau cái đó, anh dần học được cách trân trọng mọi thứ xung quanh hơn. Cũng học được cách làm thế nào để yêu một nguời cho đúng, dường như sau cú sốc đó. Anh nhận ra rất nhiều thứ. Có lẽ, việc em rời đi là câu chuyện không thể không xảy ra trong quá trình trưởng thành của anh.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 2: GẶP LẠI 1 - PHẦN 1 -->
+        <div class="slide" id="slide-man2-1" data-song-idx="2">
+          <span class="chapter-tag">Màn 2: Gặp lại (Lần 1)</span>
+          <span class="chapter-subtitle">Được gỡ block, nhưng hiện tại thì em đã có crush, anh không biết nên vẫn tiếp cận</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Anh đã phát hiện em gỡ block được một thời gian rồi nhưng anh không nhắn gì hết. Anh muốn bản thân move on. Nhưng anh không làm được, anh quyết định làm một phép thử, anh gửi lời mời kết bạn cho em, anh cứ nghĩ phép thử này có thể thử xem em còn tình cảm với anh không. Anh thấy em đồng ý kết bạn liền. Anh nghĩ anh có cơ hội, nhưng đâu ai biết là em đã có crush và việc anh làm chỉ đang làm phiền em.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 2: GẶP LẠI 1 - PHẦN 2 -->
+        <div class="slide" id="slide-man2-2" data-song-idx="2">
+          <span class="chapter-tag">Màn 2: Gặp lại (Lần 1)</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Haiz, lần đó anh thấy em chủ động rủ học, tưởng đâu lại có cơ hội, ai ngờ đâu là ảo tưởng. Rồi lại bị block lần 2.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 3: GẶP LẠI 2 - PHẦN 1 -->
+        <div class="slide" id="slide-man3-1" data-song-idx="3">
+          <span class="chapter-tag">Màn 3: Gặp lại (Lần 2)</span>
+          <span class="chapter-subtitle">Cái tin nhắn xin gỡ block từ cuối đợt đầu tiên, anh cứ nghĩ không còn tác dụng, đâu ngờ đây lại là chất xúc tác để bắt đầu câu chuyện mới của chúng ta</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Em qua acc phụ và thấy tin nhắn xin gỡ block từ đợt đầu tiên. Và rồi em rep. Anh lúc đó cũng đã từ bỏ rồi, không còn hy vọng quay lại nữa.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 3: GẶP LẠI 2 - PHẦN 2 -->
+        <div class="slide" id="slide-man3-2" data-song-idx="3">
+          <span class="chapter-tag">Màn 3: Gặp lại (Lần 2)</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Nhưng dần dần em kể về mọi chuyện trong cuộc sống của em cho anh nghe nhiều hơn. Kể lại từng câu chuyện xảy ra từng lúc chia tay tới bây giờ. Có vẻ cũng hạnh phúc, anh cũng. Vui vì quyết định của em đã mang lại kết quả đẹp cho anh. Anh tới lúc đó cũng chưa nghĩ là cả hai chúng ta sẽ quay lại.</p>
+          </div>
+        </div>
+
+        <!-- MÀN 3: GẶP LẠI 2 - PHẦN 3 -->
+        <div class="slide" id="slide-man3-3" data-song-idx="3">
+          <span class="chapter-tag">Màn 3: Gặp lại (Lần 2)</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="30">Nhưng dần anh thấy em mở lòng nhiều hơn, trong anh cũng hy vọng nhiều hơn nữa. Rồi anh quyết định. Đây có thể là cơ hội của anh, anh không muốn bản thân phải nuối tiếc gì nữa. Nên anh đã bắt đầu theo đuổi em. Đâu nghĩ tất cả đã nằm trong tầm kiểm soát của em từ đầu rồi :))) anh chỉ là hạt thóc thôi.</p>
+          </div>
+        </div>
+
+        <!-- LỜI KẾT - PHẦN 1 -->
+        <div class="slide" id="slide-conclusion-1" data-song-idx="4">
+          <span class="chapter-tag">Lời kết</span>
+          <div class="story-content">
+            <p class="typewriter-text" data-delay="35">Nhưng không sao hết, anh muốn câu chuyện này sẽ mở ra một chương mới với nhau. Anh từng đánh mất em. Lần này chúng ta sẽ bắt đầu câu chuyện mới. Để lại quá khứ ở đó như lời nhắc nhở đối với cả hai ta. Đặc biệt là anh, anh sẽ không tái phạm lại những gì anh đã làm trong quá khứ nữa. Lần này anh đã biết cách trân trọng và yêu thương người thương mình rồi. Mong lần này chúng ta sẽ không đánh mất nhau nữa. Sẽ là người cuối cùng của nhau. Không có bất kỳ tiếc nuối nào nữa.</p>
+          </div>
+        </div>
+
+        <!-- LỜI KẾT - PHẦN 2 (Confession & Signature) -->
+        <div class="slide" id="slide-conclusion-2" data-song-idx="4">
+          <span class="chapter-tag">Lời kết</span>
+          <div class="story-content scrollable">
+            <p class="typewriter-text" data-delay="35">Lời cuối: mong anh và em sẽ bên nhau thật lâuuuu. Mong anh sẽ không làm em khóccc. Mong em không cần phải âm thầm khóc hay nói chuyện một mình mỗi đêm nữaaaa. Mong rằng thứ động lại là kỷ niệm đẹp giữa đôi ta chứ không phải lời hứa dở danggg nữa nhaaaa.</p>
+            
+            <div class="signature-block">
+              <p class="sign-note">Thương em rất nhiều.</p>
+              <div class="stamp-container">
+                <div class="stamp-border">
+                  <p class="stamp-text">CAM KẾT THƯƠNG EM</p>
+                  <p class="stamp-sub">ký và ghi rõ họ và tên</p>
+                  <p class="signature-cursive">(đã ký)</p>
+                  <p class="signer-name-handwritten">Phú</p>
+                  <p class="signer-fullname">Nguyễn Vũ Thiên Phú</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Decision Buttons -->
+            <div class="decision-container" id="decision-buttons">
+              <div class="reject-wrapper" id="reject-wrapper">
+                <button id="btn-reject" class="btn btn-secondary">Từ chối</button>
+              </div>
+              <button id="btn-accept" class="btn btn-primary btn-pulse">Chấp nhận ❤️</button>
+            </div>
+            
+            <!-- Anchor for inline comments when rejecting -->
+            <div id="tease-anchor"></div>
+          </div>
+        </div>
+
+        <!-- SUCCESS SCREEN -->
+        <div class="slide" id="slide-success" data-song-idx="4">
+          <div class="heart-explosion-container">
+            <div class="giant-heart">❤️</div>
+          </div>
+          <h2 class="romantic-title-large">Anh yêu em! ❤️</h2>
+          <div class="letter-box">
+            <p class="letter-paragraph">Cảm ơn Hân vì đã đồng ý bên anh lần nữa.</p>
+            <p class="letter-paragraph">Anh hứa từ nay sẽ luôn lắng nghe, yêu thương và trân trọng em nhiều hơn. Mong rằng chương mới này của chúng ta sẽ ngập tràn nụ cười, hạnh phúc và những kỷ niệm thật đẹp nhé em.</p>
+            <p class="letter-paragraph cursive-end">Người thương của em,<br>Thiên Phú</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Card Navigation Controls (Hidden on start and success screens) -->
+      <div id="navigation-controls" class="hidden">
+        <button id="btn-prev" class="nav-btn btn-glass" disabled>
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+          </svg>
+          Quay lại
+        </button>
+        <div class="slide-indicator" id="slide-indicator">1 / 10</div>
+        <button id="btn-next" class="nav-btn btn-glass">
+          Tiếp tục
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Hidden Container for YouTube Player API -->
+  <div id="youtube-player" style="position: absolute; left: -9999px; top: -9999px; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
