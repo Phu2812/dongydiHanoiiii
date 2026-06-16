@@ -302,6 +302,7 @@ body {
 /* Slides Wrapper */
 #slides-wrapper {
   flex-grow: 1;
+  min-height: 0; /* Critical: allows flex child to shrink below content size */
   position: relative;
   display: flex;
   align-items: center;
@@ -315,6 +316,7 @@ body {
   transform: translateY(20px);
   width: 100%;
   height: 100%;
+  min-height: 0; /* Critical: allows flex child to shrink below content size */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -465,6 +467,7 @@ body {
   color: var(--text-primary);
   text-align: left;
   flex-grow: 1; /* Take up all remaining space in the fixed height card */
+  min-height: 0; /* Critical: without this, flex-grow item expands to content size, overflow-y never activates */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -7,7 +7,7 @@ let targetVolume = 75; // Default playback volume
 let volumeFadeInterval = null;
 
 const songs = [
-  { id: 'w7lPq5YQG0E', title: 'Bao Tiền Một Mớ Bình Yên - 14 Casper & Bon', start: 0 },
+  { id: 'w7lPq5YQG0E', title: 'Ở trong khu rừng - Nguyễn Hùng', start: 0 },
   { id: 'LIKOvbJ-DZg', title: 'fishy - VẾT THƯƠNG', start: 0 },
   { id: 'ZsEsft2bWnU', title: 'Anh Sẽ Gọi Tên Em Là Nốt Chu Sa - FiGDee', start: 0 },
   { id: 'Nr8gWRPPBwQ', title: 'TỪ ĐẦU - CHILLIES', start: 0 },
@@ -41,9 +41,32 @@ window.onYouTubeIframeAPIReady = function() {
 
 function onPlayerReady(event) {
   playerReady = true;
+  // Pre-set volume to 0 so the first play fades in smoothly
+  player.setVolume(0);
   if (queuedSongIndex !== null) {
-    fadeToSong(queuedSongIndex);
+    const idx = queuedSongIndex;
     queuedSongIndex = null;
+    // Song 0 is already loaded by the player initializer — play directly
+    // without calling loadVideoById (which would re-buffer = delay)
+    if (idx === 0) {
+      currentSongIndex = 0;
+      document.getElementById('song-title').textContent = songs[0].title;
+      if (songs[0].start > 0) player.seekTo(songs[0].start, true);
+      player.playVideo();
+      // Fade in volume
+      let vol = 0;
+      volumeFadeInterval = setInterval(() => {
+        vol += 4;
+        if (vol >= targetVolume) {
+          player.setVolume(targetVolume);
+          clearInterval(volumeFadeInterval);
+        } else {
+          player.setVolume(vol);
+        }
+      }, 30);
+    } else {
+      fadeToSong(idx);
+    }
   }
 }
 
